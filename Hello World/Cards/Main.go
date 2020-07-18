@@ -18,5 +18,8 @@ func main() {
 	fmt.Println("Creating new Card Deck")
 	// storing the deck local file
 	cards.saveToFile("data")
+	// retriving the data of deck from file
+	newCards := newDeckFromFile("data")
+	newCards.print()
 
 }

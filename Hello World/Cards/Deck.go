@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"math/rand"
+	"os"
 	"strings"
 	"time"
 )
@@ -31,8 +32,8 @@ func (d deck) shuffle() {
 
 // Function should return a new deck
 func newDeck() deck {
-	cardSuit := []string{"Spades", "Hearts", "Diamonds", "Club"}
-	cardValue := []string{"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"}
+	cardSuit := []string{"♠", "♥", "♦", "♣"}
+	cardValue := []string{"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "💂", "👸", "🦁"}
 	cards := deck{}
 
 	for _, suit := range cardSuit {
@@ -59,4 +60,16 @@ func (d deck) toString() string {
 func (d deck) saveToFile(filename string) error {
 	return ioutil.WriteFile(filename, []byte(d.toString()), 0666)
 
+}
+
+// Function to read from File
+func newDeckFromFile(fileName string) deck {
+	bs, err := ioutil.ReadFile(fileName)
+	if err != nil {
+		fmt.Println("Error:", err)
+		os.Exit(1)
+	}
+	allcards := string(bs)                   // coverting byte slice to string
+	strslice := strings.Split(allcards, ",") //spliting the string by ',' and converting it into slice of string
+	return deck(strslice)
 }
