@@ -62,7 +62,7 @@ func (d deck) saveToFile(filename string) error {
 
 }
 
-// Function to read from File
+// Function to read from File and create new deck
 func newDeckFromFile(fileName string) deck {
 	bs, err := ioutil.ReadFile(fileName)
 	if err != nil {
