@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"math/rand"
+	"strings"
 	"time"
 )
 
@@ -13,8 +15,8 @@ type deck []string
 // Function to print all
 
 func (d deck) print() {
-	for i, j := range d {
-		fmt.Println(i, j)
+	for _, j := range d {
+		fmt.Println(j)
 	}
 }
 
@@ -39,6 +41,22 @@ func newDeck() deck {
 		}
 
 	}
-
 	return cards
+}
+
+//Function to return hand
+func hand(d deck, handSize int) (deck, deck) {
+	return d[0:handSize], d[handSize:len(d)]
+
+}
+
+// Function to convert the deck to single string
+func (d deck) toString() string {
+	return strings.Join([]string(d), ",")
+}
+
+// Function to write the data into a file
+func (d deck) saveToFile(filename string) error {
+	return ioutil.WriteFile(filename, []byte(d.toString()), 0666)
+
 }
