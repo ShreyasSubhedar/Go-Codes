@@ -42,7 +42,24 @@ func main() {
 	}
 	jim.print()
 
+	jim.updateFirstName("Shreyas")
+	jim.print()
+
+	// Gotchas with pointer
+	// lets make a slice of string
 }
+
+// For printing the struct variable
 func (P person) print() {
 	fmt.Printf("%+v\n", P)
+}
+
+// For updating the first name
+func (P *person) updateFirstName(newfirstName string) {
+	P.firstName = newfirstName
+}
+
+// Gotchas with a pointer
+func updateMsg(msg []string) {
+	msg[0] = "byebye"
 }
