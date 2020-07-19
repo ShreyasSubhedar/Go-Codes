@@ -24,5 +24,13 @@ func main() {
 	// deleting the map key value pair
 	delete(colors, "green")
 	fmt.Println(colors)
+	// Iterate over the map
 
+	iterate(colors)
+}
+
+func iterate(m map[string]string) {
+	for i, j := range m {
+		fmt.Println(i, "->", j)
+	}
 }
