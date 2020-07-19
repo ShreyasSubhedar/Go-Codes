@@ -47,6 +47,9 @@ func main() {
 
 	// Gotchas with pointer
 	// lets make a slice of string
+	msg := []string{"hi", "there", "how", "are", "you"}
+	updateMsg(msg)
+	fmt.Println(msg)
 }
 
 // For printing the struct variable
