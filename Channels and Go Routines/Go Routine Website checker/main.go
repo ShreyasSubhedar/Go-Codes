@@ -20,8 +20,9 @@ func main() {
 	for _, site := range urls {
 		go websiteChecker(site, c)
 	}
-	for {
-		go websiteChecker(<-c, c)
+	//  Now, Other can understand the workflow
+	for l := range c {
+		go websiteChecker(l, c)
 	}
 }
 func websiteChecker(url string, c chan string) {
