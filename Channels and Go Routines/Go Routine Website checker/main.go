@@ -5,6 +5,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"time"
 )
 
 func main() {
@@ -23,6 +24,7 @@ func main() {
 	//  Now, Other can understand the workflow
 	for l := range c {
 		go websiteChecker(l, c)
+		time.Sleep(time.Second)
 	}
 }
 func websiteChecker(url string, c chan string) {
