@@ -1,4 +1,4 @@
-// Go routine website checker
+// Go routine and channels website checker
 
 package main
 
@@ -23,8 +23,11 @@ func main() {
 	}
 	//  Now, Other can understand the workflow
 	for l := range c {
-		go websiteChecker(l, c)
-		time.Sleep(time.Second)
+		//time.Sleep(time.Second)  Bad practices to sleep the thread because it throttle the other go-routines output.
+		go func(link string) {
+			time.Sleep(time.Second)
+			websiteChecker(link, c) //Always pass the argument to other routine
+		}(l)
 	}
 }
 func websiteChecker(url string, c chan string) {
